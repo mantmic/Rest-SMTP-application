@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Rest based email reporting application",
+    "description": "API for sending HTML emails with attachments"
+  },
+  "host": "",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sendEmail":{
+      "post": {
+        "tags": [
+          "sendEmail"
+        ],
+        "parameters": [
+          {
+            "name":"body",
+            "in": "body",
+            "required":true,
+            "schema":{
+              "$ref":"#/definitions/email"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Send an email",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "email":{
+      "required": [
+        "subject",
+        "to",
+        "body"
+      ],
+      "properties":{
+         "subject": {
+           "type": "string",
+           "description":"Email subject",
+           "example":"Test email with attachments"
+         },
+         "to": {
+           "type": "array",
+           "description":"Array of email addresses to send to",
+           "example":[
+             "person@gmail.com"
+           ]
+         },
+         "body": {
+           "type": "array",
+           "description":"Array of objects to include in the email",
+           "example":[
+             {
+               "type":"text",
+               "body":"Test text"
+             },
+             {
+               "type":"image",
+               "link":"https://upload.wikimedia.org/wikipedia/commons/d/d9/Test.png",
+               "name":"test_image.png",
+               "embedded":true
+             },
+             {
+               "type":"csv",
+               "link":"https://jsonplaceholder.typicode.com/posts",
+               "name":"test_csv.csv"
+             }
+           ]
+         }
+      }
+    },
+    "textAttachment":{
+      "required": [
+        "type",
+        "body"
+      ],
+      "properties":{
+         "type": {
+           "type": "string",
+           "description":"Specifies type of email object",
+           "example":"text"
+         },
+         "body": {
+           "type": "string",
+           "description":"HTML content to include in body",
+           "example":"This is some HTML text"
+         }
+      }
+    },
+    "imageAttachment":{
+      "required": [
+        "type",
+        "link"
+      ],
+      "properties":{
+         "type": {
+           "type": "string",
+           "description":"Specifies type of email object",
+           "example":"image"
+         },
+         "link": {
+           "type": "string",
+           "description":"Link to image to include in email",
+           "example":"https://upload.wikimedia.org/wikipedia/commons/d/d9/Test.png"
+         },
+         "name": {
+           "type": "string",
+           "description":"File name for the image",
+           "example":"file.csv"
+         },
+         "embedded": {
+           "type": "boolean",
+           "description":"Flag to indicate whether image should be embedded in body",
+           "example":true
+         }
+      }
+    },
+    "csvAttachment":{
+      "required": [
+        "type",
+        "link"
+      ],
+      "properties":{
+         "type": {
+           "type": "string",
+           "description":"Specifies type of email object",
+           "example":"csv"
+         },
+         "link": {
+           "type": "string",
+           "description":"Link to image to include in email",
+           "example":"https://jsonplaceholder.typicode.com/posts"
+         },
+         "name": {
+           "type": "string",
+           "description":"File name for the csv",
+           "example":"file.csv"
+         }
+      }
+    }
+  }
+}
