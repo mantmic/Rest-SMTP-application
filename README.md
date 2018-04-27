@@ -16,9 +16,9 @@ As there are currently no authentication methods it is strongly advised this app
 
 #### Future enhancements ####
 
--Incorporate authentication method
--Enable HTML tables via JSON get request
--SSL
+- Incorporate authentication method
+- Enable HTML tables via JSON get request
+- SSL
 
 
 #### API Documentation ####
