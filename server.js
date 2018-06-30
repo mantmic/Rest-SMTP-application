@@ -3,9 +3,10 @@ var express = require('express'),
   port = process.env.PORT || 8889;
   bodyParser = require('body-parser');
   //swagger docs
-  swaggerUi = require('swagger-ui-express'),
-  swaggerDocument = require('./swagger/swagger.json');
-
+  swaggerUi = require('swagger-ui-express')
+;
+const sdRaw = require('./swagger/swagger.json');
+var swaggerDocument = typeof sdRaw === 'string' ? JSON.parse(sdRaw) : sdRaw ;
 //use the body parser to get request parameters
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -8,7 +8,10 @@ const md5 = require('md5');
 var csv_stringify = require('csv-stringify');
 const tableify = require('tableify');
 
-var emailParameters = require('../config.json');
+//do this check to make this app compatible with webtask
+const rawEmailParameters = require('../config.json');
+var emailParameters = typeof rawEmailParameters === 'string' ? JSON.parse(rawEmailParameters) : rawEmailParameters
+;
 
 //function to convert json to csv
 function createCsvString(jsonMessage){
