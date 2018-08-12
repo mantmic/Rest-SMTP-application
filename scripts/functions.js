@@ -59,7 +59,7 @@ function sendHtmlEmail(mailOptions){
           }
           console.log('Message sent: %s', info.messageId);
           // Preview only available when sending through an Ethereal account
-          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+          //console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
           // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
           // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
@@ -74,11 +74,14 @@ function formatMailOptions(inputJson){
   var attachments = [] ;
   //validate inputs
   //var from = inputJson.from ;
-  var from = emailParameters.emailFrom;
+  var from = emailParameters.emailFrom ;
   if(from == null){
     from = emailParameters.emailUser;
   }
-  ;
+  if(emailParameters.emailAlias  != null){
+    from = '"' + emailParameters.emailAlias + '" <' + from + '>';
+  }
+  console.log(from)
   var to = inputJson.to ;
   var subject = inputJson.subject ;
   var email_body = inputJson.body ;

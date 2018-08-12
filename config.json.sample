@@ -1,0 +1,9 @@
+{
+	"emailUser":"user@gmail.com",
+	"emailFrom":"user@gmail.com",
+	"emailAlias":"Username person",
+	"emailPassword":"password",
+	"smtpHost":"smtp.gmail.com",
+	"smtpPort":587,
+	"smtpSecure":false
+}
