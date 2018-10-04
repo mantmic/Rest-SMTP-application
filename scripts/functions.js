@@ -81,7 +81,6 @@ function formatMailOptions(inputJson){
   if(emailParameters.emailAlias  != null){
     from = '"' + emailParameters.emailAlias + '" <' + from + '>';
   }
-  console.log(from)
   var to = inputJson.to ;
   var subject = inputJson.subject ;
   var email_body = inputJson.body ;
@@ -104,8 +103,11 @@ function formatMailOptions(inputJson){
         cid:image_cid
       });
       if(b.embedded){
-        //html = html + '<img src="cid:' + image_cid + '">';
-        html.write('<img src="cid:' + image_cid + '">')
+        if(b.width){
+          html.write('<img src="cid:' + image_cid + '" width="' + b.width + '">')
+        } else {
+          html.write('<img src="cid:' + image_cid + '">')
+        }
       };
     } else if (b.type=='csv') { //csv attachments
       var csvStream = new PassThrough();

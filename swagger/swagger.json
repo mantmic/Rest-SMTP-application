@@ -130,6 +130,11 @@
            "type": "boolean",
            "description":"Flag to indicate whether image should be embedded in body",
            "example":true
+         },
+         "width": {
+           "type":"string",
+           "description":"For embedded images, the width of the image to be rendered in the email body. By default the image will be rendered at full width",
+           "example":"100"
          }
       }
     },
